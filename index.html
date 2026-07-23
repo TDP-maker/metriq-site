@@ -53,7 +53,7 @@ h1{
   font-family:var(--display);font-weight:800;font-size:clamp(34px,4.4vw,54px);
   line-height:1.08;letter-spacing:-.025em;margin:0 0 20px;
 }
-h1 em{font-style:normal;color:var(--jeep)}
+h1 em{font-style:normal;color:var(--lime)}
 .lede{font-size:19px;color:var(--mute);margin:0 0 28px;max-width:46ch}
 .cta-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
 .btn{
@@ -66,7 +66,7 @@ h1 em{font-style:normal;color:var(--jeep)}
 .price-note b{color:var(--ink);font-weight:600}
 
 /* the report artifact — signature element */
-.artifact{position:relative}
+.artifact{position:relative;padding-top:10px}
 .report{
   background:var(--card);border-radius:14px;padding:28px;
   box-shadow:0 24px 60px -20px rgba(50,65,88,.22);
@@ -79,9 +79,10 @@ h1 em{font-style:normal;color:var(--jeep)}
 .brand-sub{font-size:11px;color:var(--mute)}
 .report-date{font-size:11px;color:var(--mute);text-align:right}
 .yours{
-  position:absolute;top:-14px;right:-6px;background:var(--jeep);color:#fff;
-  font-family:var(--body);font-weight:600;font-size:12px;padding:6px 13px;border-radius:999px;
-  transform:rotate(3deg);box-shadow:0 6px 18px -6px rgba(50,65,88,.35);
+  position:absolute;top:-16px;right:14px;z-index:5;
+  background:var(--lime);color:var(--ink);
+  font-family:var(--body);font-weight:700;font-size:12px;padding:7px 15px;border-radius:999px;
+  box-shadow:0 6px 18px -6px rgba(50,65,88,.35);white-space:nowrap;
 }
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
 .metric{background:#F7F8FA;border-radius:9px;padding:12px}
@@ -153,9 +154,77 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.4vw,38px);l
 .q h4{font-family:var(--display);font-weight:700;font-size:16px;margin:0 0 6px}
 .q p{font-size:14px;color:var(--mute);margin:0}
 
+
+/* founding members */
+.founding{background:var(--ink);color:#fff;border-radius:18px;padding:44px 40px;margin:0 0 8px}
+.founding .fm-tag{display:inline-block;background:var(--lime);color:var(--ink);font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:999px;margin-bottom:18px}
+.founding h2{color:#fff;margin:0 0 12px}
+.founding .fm-lede{color:#C4CDDB;max-width:54ch;margin:0 0 28px;font-size:17px}
+.fm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 34px;margin-bottom:30px}
+.fm-item{display:flex;gap:12px;align-items:flex-start}
+.fm-check{flex:none;width:20px;height:20px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-size:11px;font-weight:800;margin-top:2px}
+.fm-item div{font-size:15px;line-height:1.45}
+.fm-item b{font-weight:600}
+.fm-price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:26px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14)}
+.fm-price .now{font-family:var(--display);font-weight:800;font-size:44px;letter-spacing:-.03em;color:var(--lime)}
+.fm-price .per{font-size:15px;color:#C4CDDB}
+.fm-price .was{font-size:15px;color:#8E9BAF;text-decoration:line-through}
+.fm-price .locked{font-size:14px;color:#C4CDDB}
+.fm-cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btn-lime{background:var(--lime);color:var(--ink);font-weight:700}
+.fm-spots{font-size:14px;color:#C4CDDB}
+.fm-note{font-size:13.5px;color:#8E9BAF;margin-top:20px;max-width:60ch;line-height:1.55}
+
+/* founder block */
+.founder{display:grid;grid-template-columns:170px 1fr;gap:30px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin-top:34px}
+.founder .photo{width:170px;height:170px;border-radius:14px;background:#EDF0F4;display:grid;place-items:center;color:var(--mute);font-size:12.5px;text-align:center;padding:12px;overflow:hidden}
+.founder .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.founder h3{font-family:var(--display);font-weight:700;font-size:19px;margin:0 0 8px}
+.founder p{font-size:15px;color:#3D4B60;margin:0 0 10px;line-height:1.6}
+.founder p:last-child{margin:0}
+@media(max-width:760px){
+  .fm-grid{grid-template-columns:1fr}
+  .founding{padding:32px 24px}
+  .founder{grid-template-columns:1fr;text-align:left}
+  .founder .photo{width:120px;height:120px}
+}
 .pricing.three{grid-template-columns:repeat(3,1fr);max-width:none}
 .price-foot{font-size:14px;color:var(--mute);margin:22px 0 0}
-@media(max-width:880px){.pricing.three{grid-template-columns:1fr}}
+@media(max-width:880px){
+/* founding members */
+.founding{background:var(--ink);color:#fff;border-radius:18px;padding:44px 40px;margin:0 0 8px}
+.founding .fm-tag{display:inline-block;background:var(--lime);color:var(--ink);font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:999px;margin-bottom:18px}
+.founding h2{color:#fff;margin:0 0 12px}
+.founding .fm-lede{color:#C4CDDB;max-width:54ch;margin:0 0 28px;font-size:17px}
+.fm-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px 34px;margin-bottom:30px}
+.fm-item{display:flex;gap:12px;align-items:flex-start}
+.fm-check{flex:none;width:20px;height:20px;border-radius:50%;background:var(--lime);color:var(--ink);display:grid;place-items:center;font-size:11px;font-weight:800;margin-top:2px}
+.fm-item div{font-size:15px;line-height:1.45}
+.fm-item b{font-weight:600}
+.fm-price{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:26px;padding-top:24px;border-top:1px solid rgba(255,255,255,.14)}
+.fm-price .now{font-family:var(--display);font-weight:800;font-size:44px;letter-spacing:-.03em;color:var(--lime)}
+.fm-price .per{font-size:15px;color:#C4CDDB}
+.fm-price .was{font-size:15px;color:#8E9BAF;text-decoration:line-through}
+.fm-price .locked{font-size:14px;color:#C4CDDB}
+.fm-cta{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.btn-lime{background:var(--lime);color:var(--ink);font-weight:700}
+.fm-spots{font-size:14px;color:#C4CDDB}
+.fm-note{font-size:13.5px;color:#8E9BAF;margin-top:20px;max-width:60ch;line-height:1.55}
+
+/* founder block */
+.founder{display:grid;grid-template-columns:170px 1fr;gap:30px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 32px;margin-top:34px}
+.founder .photo{width:170px;height:170px;border-radius:14px;background:#EDF0F4;display:grid;place-items:center;color:var(--mute);font-size:12.5px;text-align:center;padding:12px;overflow:hidden}
+.founder .photo img{width:100%;height:100%;object-fit:cover;display:block}
+.founder h3{font-family:var(--display);font-weight:700;font-size:19px;margin:0 0 8px}
+.founder p{font-size:15px;color:#3D4B60;margin:0 0 10px;line-height:1.6}
+.founder p:last-child{margin:0}
+@media(max-width:760px){
+  .fm-grid{grid-template-columns:1fr}
+  .founding{padding:32px 24px}
+  .founder{grid-template-columns:1fr;text-align:left}
+  .founder .photo{width:120px;height:120px}
+}
+.pricing.three{grid-template-columns:1fr}}
 footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(--mute);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
 
 @media(max-width:880px){
@@ -172,18 +241,18 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(
 <div class="wrap">
 <nav>
   <div class="logo">Metr<span>i</span>q</div>
-  <a class="nav-cta" href="#pricing">Start free trial</a>
+  <a class="nav-cta" href="#founding">Claim a founding spot</a>
 </nav>
 
 <header class="hero">
   <div>
-    <h1>Know your client's account <em>without digging through the data</em>.</h1>
+    <h1>Know your client's account without digging through the data<em>.</em></h1>
     <p class="lede">Connect the ad account you already manage. Metriq reads it every week, keeps the history, and sends you a plain English read on what changed and what to do next. Branded to you, ready to forward to your client.</p>
     <div class="cta-row">
-      <a class="btn btn-primary" href="#pricing">Try it free for 14 days</a>
+      <a class="btn btn-primary" href="#founding">Claim a founding spot</a>
       <a class="btn btn-ghost" href="#how">See how it works</a>
     </div>
-    <p class="price-note">No card needed to start. Then <b>$10/month</b> for one client account.<br><span style="opacity:.75">Connects securely through The Peach System, a Meta Business Partner.</span></p>
+    <p class="price-note">Launching soon. <b>50 founding spots</b> at $10 a month, locked.<br><span style="opacity:.75">Connects securely through The Peach System, a Meta Business Partner.</span></p>
   </div>
 
   <div class="artifact">
@@ -325,22 +394,62 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(
   </div>
 </section>
 
+<section id="founding">
+  <div class="founding">
+    <span class="fm-tag">Founding members &middot; 50 spots</span>
+    <h2>Metriq launches soon. Fifty people get in first.</h2>
+    <p class="fm-lede">We are building it now. Fifty founding members get the launch price locked for as long as they stay, and a say in what gets built.</p>
+
+    <div class="fm-grid">
+      <div class="fm-item"><span class="fm-check">&#10003;</span><div><b>$10 a month, locked for as long as you stay.</b> The price will go up after launch.</div></div>
+      <div class="fm-item"><span class="fm-check">&#10003;</span><div><b>14 days free when it opens.</b> Your two weeks start at launch, not today.</div></div>
+      <div class="fm-item"><span class="fm-check">&#10003;</span><div><b>A full account audit first.</b> Your first report reads the last 90 days, not just this week.</div></div>
+      <div class="fm-item"><span class="fm-check">&#10003;</span><div><b>Direct access.</b> A private group where I answer questions every week.</div></div>
+      <div class="fm-item"><span class="fm-check">&#10003;</span><div><b>First in line at launch.</b> Founding members connect before anyone else.</div></div>
+      <div class="fm-item"><span class="fm-check">&#10003;</span><div><b>Nothing to pay today.</b> No card, no deposit. You pay when it launches, if you want it.</div></div>
+    </div>
+
+    <div class="fm-price">
+      <span class="now">$10</span>
+      <span class="per">/month, locked</span>
+      <span class="locked">&middot; about &#8369;580</span>
+    </div>
+
+    <div class="fm-cta">
+      <a class="btn btn-lime" href="REPLACE_WITH_TALLY_LINK" target="_blank" rel="noopener">Claim a founding spot</a>
+      <span class="fm-spots">Takes about 30 seconds. No card needed.</span>
+    </div>
+
+    <p class="fm-note">Metriq is built by The Digital Peach, a Meta Business Partner agency in Dubai that has been running client ad accounts for six years. When you connect an account you will see The Peach System named in the Facebook permission screen, which is our platform.</p>
+  </div>
+
+  <div class="founder">
+    <div class="photo"><img src="https://pub-55dc34ad0599416491f4a8065aa34c72.r2.dev/about-page/Rachel%20at%20Desk.jpg" alt="Rachel Lindsay, founder of The Digital Peach" loading="lazy"></div>
+    <div>
+      <h3>Why I am building this</h3>
+      <p>I have spent fifteen years in social and six running paid ads, and the same thing happens on every account: the numbers are there, but nobody can tell you what they mean or what to do next.</p>
+      <p>I built this inside my own agency first, because we needed it. Metriq is that same engine, made for the person managing client accounts on their own with nobody senior to ask.</p>
+      <p><b>Rachel Lindsay</b>, founder, The Digital Peach</p>
+    </div>
+  </div>
+</section>
+
 <section id="pricing">
-  <h2>Priced so the next client costs you nothing.</h2>
-  <p class="sec-lede">Fourteen days free. No card to start. Move up a plan the week you win the account, not before.</p>
+  <h2>What it costs.</h2>
+  <p class="sec-lede">Founding members lock the $10 rate for as long as they stay. Prices rise after the first fifty.</p>
   <div class="pricing three">
     <div class="plan">
       <h3>Starting out</h3>
       <p class="who">One client account</p>
       <div class="amount">$10<span class="per">/month</span></div>
-      <div class="peso">About &#8369;580 per month</div>
+      <div class="peso">Founding member price, locked</div>
       <ul>
         <li>1 client account</li>
         <li>A read on the account every Tuesday</li>
         <li>Your logo and colours on every report</li>
         <li>Send as PDF or share link</li>
       </ul>
-      <a class="btn btn-ghost" href="#">Start free trial</a>
+      <a class="btn btn-ghost" href="#founding">Claim a founding spot</a>
     </div>
     <div class="plan featured">
       <div class="tag">Where most VAs land</div>
@@ -355,7 +464,7 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(
         <li>Your logo and colours on every report</li>
         <li>Send as PDF or share link</li>
       </ul>
-      <a class="btn btn-primary" href="#">Start free trial</a>
+      <a class="btn btn-primary" href="#founding">Claim a founding spot</a>
     </div>
     <div class="plan">
       <h3>Full book</h3>
@@ -369,7 +478,7 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(
         <li>Your logo and colours on every report</li>
         <li>Send as PDF or share link</li>
       </ul>
-      <a class="btn btn-ghost" href="#">Start free trial</a>
+      <a class="btn btn-ghost" href="#founding">Claim a founding spot</a>
     </div>
   </div>
   <p class="price-foot">Move between plans any time. If you drop a client, drop a plan.</p>
