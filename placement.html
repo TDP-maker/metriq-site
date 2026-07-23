@@ -594,7 +594,7 @@
 
   /* ===== save prompt: anchored top-right, arrow points at the browser star ===== */
   .savetip {
-    position: fixed; top: 16px; right: 18px; z-index: 150;
+    position: fixed; top: 20px; right: 34px; z-index: 150;
     background: var(--navy); color:#fff; border-radius: 12px;
     padding: 14px 16px 14px 15px; max-width: 272px;
     box-shadow: 0 18px 44px -14px rgba(20,30,45,.45);
@@ -607,11 +607,12 @@
 
   /* the arrow is its own element above the card, and IT is what moves */
   .savetip .st-arrow {
-    position: absolute; top: -34px; right: 24px;
-    font-size: 26px; line-height: 1; color: var(--lime);
-    animation: stPoint 1.5s ease-in-out infinite;
-    text-shadow: 0 2px 8px rgba(20,30,45,.35);
+    position: absolute; top: -40px; right: 22px;
+    width: 26px; height: 34px; line-height: 0;
+    animation: stPoint 1.4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 6px rgba(20,30,45,.4));
   }
+  .savetip .st-arrow svg { display: block; }
   @keyframes stPoint {
     0%, 100% { transform: translateY(0);    opacity: .85; }
     50%      { transform: translateY(-9px); opacity: 1; }
@@ -2042,10 +2043,15 @@ fbq("track", "PageView");
 </script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"283580448dcb46769a68b1ce3ed66c4a","r":1}' crossorigin="anonymous"></script>
 <div class="savetip" id="savetip" role="status">
-  <div class="st-arrow" aria-hidden="true">&#11165;</div>
+  <div class="st-arrow" aria-hidden="true">
+    <svg width="26" height="34" viewBox="0 0 26 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13 33V4" stroke="#C4F000" stroke-width="4" stroke-linecap="round"/>
+      <path d="M3 13L13 3L23 13" stroke="#C4F000" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </div>
   <button class="st-x" id="stX" aria-label="Dismiss">&times;</button>
-  <div class="st-h">Save this, you will want it next time</div>
-  <div class="st-s">Click the star up there in your browser bar.</div>
+  <div class="st-h">Save this for next time</div>
+  <div class="st-s">Click the star in your browser bar.</div>
   <div class="st-keys"><kbd id="stK1">Ctrl</kbd><kbd>D</kbd><span class="st-or">also works</span></div>
 </div>
 
