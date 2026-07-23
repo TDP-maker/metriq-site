@@ -31,8 +31,21 @@ body{
 }
 .wrap{max-width:1120px;margin:0 auto;padding:0 24px}
 
+
 /* nav */
-nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
+nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav-in{max-width:1120px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.nav-links{display:flex;align-items:center;gap:26px}
+.nav-links a{font-size:15px;font-weight:500;color:var(--mute);text-decoration:none}
+.nav-links a:hover{color:var(--ink)}
+@media(max-width:640px){
+  .nav-in{padding:12px 16px;gap:10px}
+  .nav-links{gap:14px}
+  .nav-links a.nav-link{display:none}
+  .nav-cta{padding:9px 14px;font-size:14px}
+}
+
+.OLDNAV{display:flex;align-items:center;justify-content:space-between;padding:22px 0}
 .logo{font-family:var(--display);font-weight:800;font-size:21px;letter-spacing:-.02em}
 .logo span{color:var(--lime)}
 .logo{color:var(--ink)}
@@ -155,6 +168,28 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.4vw,38px);l
 .q p{font-size:14px;color:var(--mute);margin:0}
 
 
+
+/* signup form */
+.fm-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:22px;margin-top:4px}
+.fm-form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fm-form label{display:block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#9FB0C6;margin-bottom:6px}
+.fm-form input,.fm-form select{
+  width:100%;box-sizing:border-box;font-family:var(--body);font-size:15px;
+  padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);color:#fff;
+}
+.fm-form input::placeholder{color:#7C8CA3}
+.fm-form input:focus,.fm-form select:focus{outline:2px solid var(--lime);outline-offset:1px;border-color:transparent}
+.fm-form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#9FB0C6 50%),linear-gradient(135deg,#9FB0C6 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.fm-form select option{background:var(--ink);color:#fff}
+.fm-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fm-submit{width:100%;border:none;cursor:pointer;font-family:var(--body);font-weight:700;font-size:16px;padding:14px;border-radius:10px;background:var(--lime);color:var(--ink)}
+.fm-submit:hover{background:#d4ff1a}
+.fm-submit:disabled{opacity:.6;cursor:default}
+.fm-msg{font-size:14px;margin-top:12px;color:#C4CDDB}
+.fm-msg.err{color:#FFB4B5}
+@media(max-width:640px){ .fm-form .row{grid-template-columns:1fr} }
+
 /* founding members */
 .founding{background:var(--ink);color:#fff;border-radius:18px;padding:44px 40px;margin:0 0 8px}
 .founding .fm-tag{display:inline-block;background:var(--lime);color:var(--ink);font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:999px;margin-bottom:18px}
@@ -191,6 +226,28 @@ h2{font-family:var(--display);font-weight:700;font-size:clamp(28px,3.4vw,38px);l
 .pricing.three{grid-template-columns:repeat(3,1fr);max-width:none}
 .price-foot{font-size:14px;color:var(--mute);margin:22px 0 0}
 @media(max-width:880px){
+
+/* signup form */
+.fm-form{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:14px;padding:22px;margin-top:4px}
+.fm-form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fm-form label{display:block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#9FB0C6;margin-bottom:6px}
+.fm-form input,.fm-form select{
+  width:100%;box-sizing:border-box;font-family:var(--body);font-size:15px;
+  padding:12px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.18);
+  background:rgba(255,255,255,.06);color:#fff;
+}
+.fm-form input::placeholder{color:#7C8CA3}
+.fm-form input:focus,.fm-form select:focus{outline:2px solid var(--lime);outline-offset:1px;border-color:transparent}
+.fm-form select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,#9FB0C6 50%),linear-gradient(135deg,#9FB0C6 50%,transparent 50%);background-position:calc(100% - 18px) 50%,calc(100% - 13px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat}
+.fm-form select option{background:var(--ink);color:#fff}
+.fm-form .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.fm-submit{width:100%;border:none;cursor:pointer;font-family:var(--body);font-weight:700;font-size:16px;padding:14px;border-radius:10px;background:var(--lime);color:var(--ink)}
+.fm-submit:hover{background:#d4ff1a}
+.fm-submit:disabled{opacity:.6;cursor:default}
+.fm-msg{font-size:14px;margin-top:12px;color:#C4CDDB}
+.fm-msg.err{color:#FFB4B5}
+@media(max-width:640px){ .fm-form .row{grid-template-columns:1fr} }
+
 /* founding members */
 .founding{background:var(--ink);color:#fff;border-radius:18px;padding:44px 40px;margin:0 0 8px}
 .founding .fm-tag{display:inline-block;background:var(--lime);color:var(--ink);font-family:var(--body);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:6px 13px;border-radius:999px;margin-bottom:18px}
@@ -238,12 +295,18 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(
 </head>
 <body>
 
-<div class="wrap">
 <nav>
-  <div class="logo">Metr<span>i</span>q</div>
-  <a class="nav-cta" href="#founding">Claim a founding spot</a>
+  <div class="nav-in">
+    <a href="/" class="logo" style="text-decoration:none">Metr<span>i</span>q</a>
+    <div class="nav-links">
+      <a class="nav-link" href="/placement.html">Free tools</a>
+      <a class="nav-link" href="#how">How it works</a>
+      <a class="nav-cta" href="#founding">Claim a founding spot</a>
+    </div>
+  </div>
 </nav>
 
+<div class="wrap">
 <header class="hero">
   <div>
     <h1>Know your client's account without digging through the data<em>.</em></h1>
@@ -415,10 +478,32 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(
       <span class="locked">&middot; about &#8369;580</span>
     </div>
 
-    <div class="fm-cta">
-      <a class="btn btn-lime" href="REPLACE_WITH_TALLY_LINK" target="_blank" rel="noopener">Claim a founding spot</a>
-      <span class="fm-spots">Takes about 30 seconds. No card needed.</span>
-    </div>
+    <form class="fm-form" id="fmForm" novalidate>
+      <div class="row">
+        <div>
+          <label for="fmName">Your name</label>
+          <input id="fmName" name="name" type="text" placeholder="Maria Santos" autocomplete="name" required>
+        </div>
+        <div>
+          <label for="fmEmail">Email</label>
+          <input id="fmEmail" name="email" type="email" placeholder="you@example.com" autocomplete="email" required>
+        </div>
+      </div>
+      <div style="margin-bottom:16px">
+        <label for="fmAccounts">How many client ad accounts do you manage?</label>
+        <select id="fmAccounts" name="accounts">
+          <option value="">Choose one</option>
+          <option value="0">None yet, I am just starting</option>
+          <option value="1">1</option>
+          <option value="2-3">2 to 3</option>
+          <option value="4-6">4 to 6</option>
+          <option value="7+">7 or more</option>
+        </select>
+      </div>
+      <div class="hp"><label>Website<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
+      <button class="fm-submit" type="submit" id="fmSubmit">Claim a founding spot</button>
+      <div class="fm-msg" id="fmMsg">Takes about 30 seconds. No card needed.</div>
+    </form>
 
     <p class="fm-note">Metriq is built by The Digital Peach, a Meta Business Partner agency in Dubai that has been running client ad accounts for six years. When you connect an account you will see The Peach System named in the Facebook permission screen, which is our platform.</p>
   </div>
@@ -525,5 +610,38 @@ footer{padding:44px 0;border-top:1px solid var(--line);font-size:13px;color:var(
 </footer>
 
 </div>
+
+<script>
+(function(){
+  var f=document.getElementById('fmForm');
+  if(!f) return;
+  var btn=document.getElementById('fmSubmit'), msg=document.getElementById('fmMsg');
+  f.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name=f.name.value.trim(), email=f.email.value.trim();
+    if(!name){ msg.className='fm-msg err'; msg.textContent='Please add your name.'; f.name.focus(); return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ msg.className='fm-msg err'; msg.textContent='That email does not look right.'; f.email.focus(); return; }
+    btn.disabled=true; btn.textContent='Saving...'; msg.className='fm-msg'; msg.textContent='';
+    fetch('/api/signup',{
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        name:name, email:email,
+        accounts:f.accounts.value,
+        website:f.website.value,
+        source:(document.referrer||'')+' | '+location.search
+      })
+    }).then(function(r){ return r.json(); })
+     .then(function(d){
+        if(d && d.ok){ window.location.href='/thanks.html'; return; }
+        throw new Error(d && d.error || 'failed');
+     })
+     .catch(function(){
+        btn.disabled=false; btn.textContent='Claim a founding spot';
+        msg.className='fm-msg err';
+        msg.textContent='Something went wrong. Try again, or email hello@scalemetriq.com.';
+     });
+  });
+})();
+</script>
 </body>
 </html>
