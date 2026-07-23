@@ -592,13 +592,40 @@
   .annc .annc-x:hover { color:#fff; }
   @media(max-width:640px){ .annc{ font-size:12.5px; padding:9px 34px 9px 14px; } }
 
-  /* ===== save prompt ===== */
-  .savebar { display:flex; align-items:center; gap:9px; font-size:12.5px; color:var(--slate); padding:9px 32px 0; }
-  .savebar .sb-key { display:inline-flex; align-items:center; gap:4px; }
-  .savebar kbd { font-family:inherit; font-size:11px; font-weight:700; background:#fff; border:1px solid var(--line); border-bottom-width:2px; border-radius:5px; padding:2px 6px; color:var(--navy); }
-  .savebar .sb-hide { margin-left:auto; background:none; border:0; color:var(--tan); font-size:12px; cursor:pointer; padding:2px 6px; }
-  .savebar .sb-hide:hover { color:var(--slate); }
-  @media(max-width:640px){ .savebar{ padding:9px 16px 0; font-size:12px; } .savebar kbd{ display:none; } }
+  /* ===== save prompt: anchored top-right, points at the browser star ===== */
+  .savetip {
+    position: fixed; top: 10px; right: 18px; z-index: 150;
+    background: var(--navy); color:#fff; border-radius: 12px;
+    padding: 13px 16px 13px 15px; max-width: 268px;
+    box-shadow: 0 18px 44px -14px rgba(20,30,45,.45);
+    display: none; animation: tipBob 2.4s ease-in-out infinite;
+  }
+  .savetip.show { display: block; }
+  @keyframes tipBob { 0%,100%{ transform: translateY(0); } 50%{ transform: translateY(-7px); } }
+  @media (prefers-reduced-motion: reduce) { .savetip { animation: none; } }
+
+  /* the arrow points up, out of the page, toward the address bar */
+  .savetip::before {
+    content:""; position:absolute; top:-9px; right:26px;
+    border-left:9px solid transparent; border-right:9px solid transparent;
+    border-bottom:9px solid var(--navy);
+  }
+  .savetip .st-h { font-size:14px; font-weight:700; line-height:1.35; margin-bottom:4px; }
+  .savetip .st-s { font-size:12.5px; color:#B9C3D1; line-height:1.45; }
+  .savetip .st-keys { display:inline-flex; gap:4px; margin-top:9px; }
+  .savetip kbd {
+    font-family:inherit; font-size:11px; font-weight:700;
+    background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.22);
+    border-radius:5px; padding:3px 7px; color:#fff;
+  }
+  .savetip .st-x {
+    position:absolute; top:6px; right:8px; background:none; border:0;
+    color:#7C8CA3; font-size:16px; line-height:1; cursor:pointer; padding:4px 6px;
+  }
+  .savetip .st-x:hover { color:#fff; }
+
+  /* no bookmark star on mobile, so never show it there */
+  @media (max-width: 760px) { .savetip { display: none !important; } }
 
   /* ===== first-run guide ===== */
   .guide-bg { position:fixed; inset:0; background:rgba(40,53,72,.72); z-index:200; display:none; align-items:center; justify-content:center; padding:20px; }
@@ -733,13 +760,6 @@ fbq("track", "PageView");
     </div>
   </div>
 </header>
-
-<div class="savebar" id="savebar">
-  <span>&#9733;</span>
-  <span>Use this every time you make creative. Save it now:</span>
-  <span class="sb-key"><kbd>Ctrl</kbd><kbd>D</kbd></span>
-  <button class="sb-hide" id="sbHide">Hide</button>
-</div>
 
 <label class="drop" id="drop">
   <input type="file" id="file" accept="image/*,video/*" multiple hidden>
@@ -1226,6 +1246,7 @@ fbq("track", "PageView");
     carIdx = 0; buildDots(); goCar(0);
   }
   function onMediaLoaded() {
+    if (window.metriqShowSaveTip) window.metriqShowSaveTip();
     const fm = feedM(), sm = storyM();
     if (fm) { [igCreative, fbCreative].forEach(w => renderInto(w, fm)); }
     if (sm) { [igsCreative, fbsCreative].forEach(w => renderInto(w, sm)); }
@@ -1253,6 +1274,7 @@ fbq("track", "PageView");
   };
   const YT_SIDE = 0.05, YT_VERT = 0.10;   // 5% each side (centre 90%), 10% top+bottom (centre 80%)
   function onYouTubeLoaded() {
+    if (window.metriqShowSaveTip) window.metriqShowSaveTip();
     if (ytMedia) renderInto(ytCreative, ytMedia);
     clearScan();
     drop.classList.add('has-img');
@@ -1306,7 +1328,7 @@ fbq("track", "PageView");
       { key:'video',     make:'video', makep:'videos', px:'1920 &times; 1080', ratio:'16:9', shape:'A video (upload it to YouTube first).', why:'Wide is the default; add square or vertical too if you have them.', min:1, kinds:['video169','square','vertical'], video:true }
     ];
   }
-  function onGoogleLoaded() { drop.classList.add('has-img'); renderGoogle(); }
+  function onGoogleLoaded() { if (window.metriqShowSaveTip) window.metriqShowSaveTip(); drop.classList.add('has-img'); renderGoogle(); }
   function shapeName(m) {
     const r = m.w / m.h;
     if (m.isVideo) return 'a video';
@@ -2007,6 +2029,13 @@ fbq("track", "PageView");
   });
 </script>
 <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/v4513226cdae34746b4dedf0b4dfa099e1781791509496" integrity="sha512-ZE9pZaUXND66v380QUtch/5sE9tPFh2zg45pR2PB0CVkCtOREv2AJKkSidISWkysEuQ0EH8faUU5du78bx87UQ==" data-cf-beacon='{"version":"2024.11.0","token":"283580448dcb46769a68b1ce3ed66c4a","r":1}' crossorigin="anonymous"></script>
+<div class="savetip" id="savetip" role="status">
+  <button class="st-x" id="stX" aria-label="Dismiss">&times;</button>
+  <div class="st-h">Save this for next time &#8599;</div>
+  <div class="st-s">Tap the star up there, or use:</div>
+  <div class="st-keys"><kbd id="stK1">Ctrl</kbd><kbd>D</kbd></div>
+</div>
+
 <div class="guide-bg" id="guideBg">
   <div class="guide" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
     <div class="guide-head">
@@ -2062,17 +2091,27 @@ fbq("track", "PageView");
     });
   }
 
-  /* save prompt: hide once dismissed, and swap the shortcut on Mac */
-  var sb = document.getElementById('savebar');
-  if (sb) {
-    if (get(LS.save)) sb.style.display = 'none';
+  /* Save prompt. Shown only AFTER they have used the tool once, because that is
+     the moment they know it is worth keeping. Desktop only: phones have no star. */
+  var tip = document.getElementById('savetip');
+  if (tip) {
     if (/Mac|iPhone|iPad/.test(navigator.platform || navigator.userAgent)) {
-      var keys = sb.querySelectorAll('kbd');
-      if (keys.length === 2) { keys[0].textContent = 'Cmd'; keys[1].textContent = 'D'; }
+      var k1 = document.getElementById('stK1'); if (k1) k1.textContent = 'Cmd';
     }
-    document.getElementById('sbHide').addEventListener('click', function(){
-      sb.style.display = 'none'; set(LS.save,'1');
+    document.getElementById('stX').addEventListener('click', function(){
+      tip.classList.remove('show'); set(LS.save,'1');
     });
+    window.metriqShowSaveTip = function(){
+      if (get(LS.save)) return;
+      if (window.matchMedia('(max-width: 760px)').matches) return;
+      if (tip.classList.contains('show')) return;
+      setTimeout(function(){
+        tip.classList.add('show');
+        setTimeout(function(){
+          if (!get(LS.save)) { tip.classList.remove('show'); }
+        }, 14000);
+      }, 1200);
+    };
   }
 })();
 </script>
