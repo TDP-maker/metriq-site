@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-TQLGZRBC');</script>
+<!-- End Google Tag Manager -->
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Metriq — Know your client's ad account without digging through the data</title>
@@ -306,6 +314,11 @@ fbq("track", "PageView");
 -->
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TQLGZRBC"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
 
 <nav>
   <div class="nav-in">
@@ -471,7 +484,7 @@ fbq("track", "PageView");
 
 <section id="founding">
   <div class="founding">
-    <span class="fm-tag">Founding members &middot; 50 spots</span>
+    <span class="fm-tag" id="fmTag">Founding members &middot; 50 spots</span>
     <h2>Metriq launches soon. Fifty people get in first.</h2>
     <p class="fm-lede">We are building it now. Fifty founding members get the launch price locked for as long as they stay, and a say in what gets built.</p>
 
@@ -644,7 +657,7 @@ fbq("track", "PageView");
       })
     }).then(function(r){ return r.json(); })
      .then(function(d){
-        if(d && d.ok){ window.location.href='/thanks.html'; return; }
+        if(d && d.ok){ window.location.href = (d.founding === false) ? '/thanks-waitlist.html' : '/thanks.html'; return; }
         throw new Error(d && d.error || 'failed');
      })
      .catch(function(){
@@ -653,6 +666,25 @@ fbq("track", "PageView");
         msg.textContent='Something went wrong. Try again, or email hello@scalemetriq.com.';
      });
   });
+})();
+</script>
+
+<script>
+/* Live founding-spot counter. Real scarcity, not claimed scarcity. */
+(function(){
+  var tag = document.getElementById('fmTag');
+  if (!tag) return;
+  fetch('/api/count')
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if (!d || typeof d.remaining !== 'number') return;
+      if (d.remaining <= 0) {
+        tag.textContent = 'Founding spots have gone';
+        return;
+      }
+      tag.innerHTML = 'Founding members \u00b7 ' + d.remaining + ' of ' + d.cap + ' spots left';
+    })
+    .catch(function(){ /* leave the default text */ });
 })();
 </script>
 </body>
